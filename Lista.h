@@ -13,17 +13,17 @@ typedef int Dato;
 
 class Lista{
 protected:
-    Nodo* siguiente;
     Nodo* cabeza;
     Nodo* cola;
 
 public:
+    //Constructor de la clase Lista
     Lista(){
-        siguiente = NULL;
+        cabeza = NULL;
+
         cola = NULL;
     }
 
-    void crearLista();
     void insertarPrimero(Dato valor);
     void insertarFinal(Dato valor);
     bool eliminarInicio(Dato valor);

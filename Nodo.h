@@ -15,7 +15,7 @@ protected:
 public:
     Nodo(Dato t){
         dato = t;
-        enlace = 0;
+        enlace = NULL;
     }
     Nodo(Dato p, Nodo* n){
         dato = p;
@@ -31,7 +31,7 @@ public:
 
     }
 
-    void ponerEnlace(Nodo* sgte){
+    void siguiente(Nodo* sgte){
         enlace = sgte;
     }
 

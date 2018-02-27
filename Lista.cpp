@@ -8,15 +8,16 @@ using namespace std;
 
 
 void Lista::insertarPrimero(int dato) {
-    Nodo* nuevo;
-    nuevo = new Nodo(dato);
+
+    Nodo* nuevo;                //Crea el nodo
+    nuevo = new Nodo(dato);     //Le asigna al nodo el dato que se desea
+
     if(esVacia()){
-        siguiente = cola = nuevo  ;      //La nueva lista tiene un solo nodo
+        cabeza = nuevo  ;      //La nueva lista tiene un solo nodo
     }
     else{
-        nuevo->ponerEnlace(siguiente);  //Enlaza nuevo con siguiente
-        siguiente = nuevo;              // mueve siguiente y apunta al nuevo nodo
-        cola->ponerEnlace(siguiente);
+        nuevo->siguiente(cabeza);  //Enlaza nuevo con siguiente
+        cabeza = nuevo;              // mueve siguiente y apunta al nuevo nodo
     }
 }
 
@@ -26,11 +27,15 @@ void Lista::insertarFinal(Dato valor) {
     nuevo = new Nodo(valor);
 
     if(esVacia()){
-        siguiente = cola = nuevo;
+        cabeza = nuevo;
     }
     else{
-        cola->ponerEnlace(nuevo);
-        cola = nuevo;
+        nuevo->siguiente(NULL);
+        if(cabeza->enlaceNodo()== 0)
+            cabeza->siguiente(nuevo);
+        //cola->siguiente(nuevo);
+        //cola = nuevo;
+
     }
 }
 
@@ -40,15 +45,15 @@ bool Lista::eliminarFinal(Dato valor) {
     }
     else{
         Nodo* temp = cola;
-        if(siguiente == cola){
-            siguiente = cola = 0;
+        if(cabeza == cola){
+            cabeza = cola = 0;
         }
         else{
-            Nodo* actual = siguiente;
+            Nodo* actual = cabeza;
             while(actual->enlaceNodo() != cola)
                 actual = actual->enlaceNodo();
             cola = actual;
-            actual->ponerEnlace(0);
+            actual->siguiente(0);
         }
         //valor = temp->datoNodo();
         delete temp;
@@ -61,24 +66,24 @@ bool Lista::eliminarInicio(Dato valor) {
         return false;
     }
     else{
-        Nodo* temp = siguiente;
+        Nodo* temp = cabeza;
 
-        if (siguiente == cola)
-            siguiente= cola = 0;
+        if (cabeza == cola)
+            cabeza= cola = 0;
         else
-            siguiente = siguiente->enlaceNodo();
+            cabeza = cabeza->enlaceNodo();
         delete temp;
         return true;
     }
 }
 
 bool Lista::esVacia()  {
-    return siguiente == 0;
+    return cabeza == NULL;
 }
 
 void Lista::imprimir() {
     Nodo* n;
-    n = siguiente;
+    n = cabeza;
     //cout << "Lista: \n "<< endl;
     if( n == NULL){
         cout<< "La lista se encuentra vacía\n"<<endl;
