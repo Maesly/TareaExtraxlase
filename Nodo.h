@@ -21,6 +21,7 @@ public:
         dato = p;
         enlace = n;
     }
+
     Dato datoNodo() const {
         return dato;
 

@@ -7,10 +7,12 @@ int main() {
 
     Dato d;
     Lista lista;
-    cout<< "Elementos de la lista, termina con -1" <<endl;
+    cout<< "Elementos de la lista: " <<endl;
     lista.insertarPrimero(1);
     lista.insertarPrimero(2);
     lista.insertarPrimero(3);
+    lista.insertar(78,3);
+
     lista.imprimir();
 
 

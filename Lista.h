@@ -23,17 +23,19 @@ public:
 
         cola = NULL;
     }
+    int cantNodos = 0;
 
     void insertarPrimero(Dato valor);
     void insertarFinal(Dato valor);
-    bool eliminarInicio(Dato valor);
-    bool eliminarFinal(Dato valor);
+    void insertar(Dato valor, int posicion);
+    void eliminarInicio();
+    void eliminarFinal();
     void imprimir();
     bool esVacia();
     void instrucciones();
     void probarLista();
     void menu();
 
-
+    Nodo* ultimo();
 };
 #endif //TAREAEXTRAXLASE_LISTA_H
