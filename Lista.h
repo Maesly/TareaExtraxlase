@@ -30,6 +30,7 @@ public:
     void insertar(Dato valor, int posicion);
     void eliminarInicio();
     void eliminarFinal();
+    void eliminarPosicion(int posicion);
     void imprimir();
     bool esVacia();
     void instrucciones();

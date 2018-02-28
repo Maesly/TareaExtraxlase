@@ -31,7 +31,7 @@ void Lista::insertarPrimero(int dato) {
 
 /**
  * @brief Inserta un elemento al final de la lista
- * @param valor
+ * @param valor Elemento a insertar en la lista
  * */
 void Lista::insertarFinal(Dato valor) {
 
@@ -51,12 +51,18 @@ void Lista::insertarFinal(Dato valor) {
         cantNodos++;
     }
 }
-
+/**
+ * @brief funcion que inserta un elemento en cualquier posición de la lista
+ * @param valor  Elemento a insertar en la lista
+ * @param posicion Posición en la que se desea insertar el valor
+ * */
 void Lista::insertar(Dato valor, int posicion) {
+
     Nodo* anterior = cabeza;
     Nodo* siguiente = cabeza->enlaceNodo();
-    Nodo* nuevo;
-    nuevo = new Nodo(valor);
+
+    Nodo* nuevo;                //Crea el nuevo nodo
+    nuevo = new Nodo(valor);    //Asigna el valor al nodo
 
     int c = 0;
 
@@ -68,21 +74,25 @@ void Lista::insertar(Dato valor, int posicion) {
         cout<<"Error de indice"<<endl;
     }
     else if(c == posicion) {        //Realiza una validacion
-        insertarPrimero(valor);
-        cantNodos++;
+        insertarPrimero(valor);     //Llama a la funcion insertarPrimero
+        cantNodos++;                //Aumenta en una unidad el numero de nodos
     }
     else{
-        while(c != posicion-1){
+        while(c != posicion-1){        //Ciclo que recorre la lista hasta llegar a la posicion a insertar
             anterior = anterior->enlaceNodo();
             siguiente = siguiente->enlaceNodo();
             c++;
         }
-        nuevo->siguiente(siguiente);
-        anterior->siguiente(nuevo);
+        nuevo->siguiente(siguiente);     // Nuevo apunta al nodo siguiente
+        anterior->siguiente(nuevo);      // anterior apunta al nodo nuevo
         cantNodos++;
     }
 }
 
+/**
+ * @brief Funcion que elimina elemento al final de la lista
+ *
+ * */
 void Lista::eliminarFinal() {
 
     Nodo* final2 = cabeza->enlaceNodo();        //Crea dos nodos temporales
@@ -97,36 +107,79 @@ void Lista::eliminarFinal() {
             final = final->enlaceNodo();
         }
         final->siguiente(NULL);                 //Elimina el ultimo nodo
+        cantNodos--;
         delete(final2);                         //Libera memoria
     }
 }
-
+/**
+ * @brief Funcion que elimina elementos al inicio de la lista
+ * */
 void Lista::eliminarInicio() {
 
-    if(esVacia()){
+    if(esVacia()){          //Valida si la lista se encuentra vacia
         cout<< " Error, la lista se encuentra vacía.";
     }
     else{
-        Nodo* temp= cabeza;
-        cabeza = temp->enlaceNodo();
-        delete(temp);
+        Nodo* temp= cabeza;     //Crea el puntero temp y lo posiciona al inicio de la lista
+        cabeza = temp->enlaceNodo();    //Elimina el primer nodo
+        cantNodos--;
+        delete(temp);            //Libera memoria
     }
 }
 
+/**
+ * @brief Funcion que elimina un elemento en cualquier posicion
+ * @param posicion La posicion de la lista que se desea eliminar
+ * */
+
+void Lista::eliminarPosicion(int posicion) {
+
+    Nodo* anterior = cabeza;
+    Nodo* siguiente = cabeza->enlaceNodo();
+
+    int cont = 0;
+
+    if(esVacia()){              // Valida si la lista se encuentra vacía
+        cout << "Error, la lista se encuentra vacía ";
+    }
+    else if(posicion == cont){  //Valida si se quiere eliminar el primer elemento
+        eliminarInicio();
+        cantNodos--;
+    }else if(posicion > cantNodos-1){   //Valida que el nodo que se quiera eliminar realmente este en la lista
+        cout<<"Error de indice"<<endl;
+    }
+    else{
+        while(cont < posicion-1){   // Ciclo que recorre la lista
+            anterior = anterior->enlaceNodo();
+            siguiente = siguiente->enlaceNodo();
+            cont++;
+        }
+        anterior->siguiente(siguiente->enlaceNodo());   //Elimina el nodo deseado
+        cantNodos--;
+        delete(siguiente);  //Libera memoria 
+    }
+}
+
+/**
+ * @brief Verifica que la lista se encuentre vacía
+ * */
 bool Lista::esVacia()  {
-    return cabeza == NULL;
+    return cabeza == NULL; //Verifica que la lista este vacía
 }
 /**
+ * @brief Funcion que se encarga de recorrer la lista e imprimir
+ * cada nodo
+ *
  * */
 
 void Lista::imprimir() {
 
-    Nodo* n = cabeza;
+    Nodo* n = cabeza;      //Crea un puntero y lo posiciona en la cabeza de la lista
 
-    if( n == NULL){
+    if( esVacia()){    // Valida si l lista esta vacía
         cout<< "La lista se encuentra vacía\n"<<endl;
     }
-    while(n != NULL){
+    while(n != NULL){ // Ciclo que recorre la lista e imprime cada elemento
         cout <<"->"<< n->datoNodo()<<"\t";
 
         n = n->enlaceNodo();
@@ -144,41 +197,3 @@ void Lista::instrucciones() {
          << " 4 para eliminar del final de la lista\n"
          << " 5 para finalizar la lista\n";
 }
-/*
-void Lista::probarLista() {
-    int opcion;
-    instrucciones();
-
-    Dato d;
-    Lista lista;
-    do{
-        cout << "?";
-        cin >> opcion;
-
-        switch (opcion){
-            case 1:
-                cout << "Escriba ";
-                int b;
-                cin >> b;
-                lista.insertarPrimero(b);
-                lista.imprimir();
-                break;
-            case 2:
-                cout << "Escriba ";
-                cin >> d;
-                lista.insertarFinal(d);
-                lista.imprimir();
-                break;
-            case 3:
-                if(lista.eliminarInicio(d))
-                    cout << d << " se eliminó de la lista\n";
-                lista.imprimir();
-                break;
-            case 4:
-                if(lista.eliminarFinal(d))
-                    cout << d << " se eliminó de la lista\n";
-                lista.imprimir();
-                break;
-        }
-    }while(opcion != 5);
-}*/
