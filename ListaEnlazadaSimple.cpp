@@ -2,7 +2,7 @@
 // Created by maesly on 22/02/18.
 //
 
-#include "Lista.h"
+#include "ListaEnlazadaSimple.h"
 using namespace std;
 #include <iostream>
 
@@ -12,7 +12,7 @@ using namespace std;
  *@param dato Elemento a insertar en la lista
  *
  * */
-void Lista::insertarPrimero(int dato) {
+void ListaEnlazadaSimple::insertarPrimero(int dato) {
 
     Nodo* nuevo;                //Crea el nodo
     nuevo = new Nodo(dato);     //Le asigna al nodo el dato que se desea
@@ -33,17 +33,17 @@ void Lista::insertarPrimero(int dato) {
  * @brief Inserta un elemento al final de la lista
  * @param valor Elemento a insertar en la lista
  * */
-void Lista::insertarFinal(Dato valor) {
+void ListaEnlazadaSimple::insertarFinal(Dato valor) {
 
     Nodo* temp = cabeza;
-    Nodo* nuevo = new Nodo(valor);
+    Nodo* nuevo = new Nodo(valor);      //Crea el nuevo nodo a insertar en la lista
 
     if(temp == NULL){
         cabeza = nuevo;
         cantNodos++;
     }
     else{
-        while(temp->enlaceNodo() != NULL){
+        while(temp->enlaceNodo() != NULL){      //Ciclo que recorre la lista
             temp = temp->enlaceNodo();
         }
         temp->siguiente(nuevo);
@@ -56,7 +56,7 @@ void Lista::insertarFinal(Dato valor) {
  * @param valor  Elemento a insertar en la lista
  * @param posicion Posición en la que se desea insertar el valor
  * */
-void Lista::insertar(Dato valor, int posicion) {
+void ListaEnlazadaSimple::insertar(Dato valor, int posicion) {
 
     Nodo* anterior = cabeza;
     Nodo* siguiente = cabeza->enlaceNodo();
@@ -93,7 +93,7 @@ void Lista::insertar(Dato valor, int posicion) {
  * @brief Funcion que elimina elemento al final de la lista
  *
  * */
-void Lista::eliminarFinal() {
+void ListaEnlazadaSimple::eliminarFinal() {
 
     Nodo* final2 = cabeza->enlaceNodo();        //Crea dos nodos temporales
     Nodo* final = cabeza;
@@ -114,7 +114,7 @@ void Lista::eliminarFinal() {
 /**
  * @brief Funcion que elimina elementos al inicio de la lista
  * */
-void Lista::eliminarInicio() {
+void ListaEnlazadaSimple::eliminarInicio() {
 
     if(esVacia()){          //Valida si la lista se encuentra vacia
         cout<< " Error, la lista se encuentra vacía.";
@@ -132,7 +132,7 @@ void Lista::eliminarInicio() {
  * @param posicion La posicion de la lista que se desea eliminar
  * */
 
-void Lista::eliminarPosicion(int posicion) {
+void ListaEnlazadaSimple::eliminarPosicion(int posicion) {
 
     Nodo* anterior = cabeza;
     Nodo* siguiente = cabeza->enlaceNodo();
@@ -156,23 +156,72 @@ void Lista::eliminarPosicion(int posicion) {
         }
         anterior->siguiente(siguiente->enlaceNodo());   //Elimina el nodo deseado
         cantNodos--;
-        delete(siguiente);  //Libera memoria 
+        delete(siguiente);  //Libera memoria
+    }
+}
+
+void ListaEnlazadaSimple::obtenerPosicion(int dato) {
+
+    Nodo* temp = cabeza;
+    int c = 0 ;
+
+    if(esVacia()){
+        cout <<"No hay elementos en la lista";
+    }
+    else {
+        while((temp->enlaceNodo() != NULL)&&(temp->datoNodo()!= dato)){
+            temp = temp->enlaceNodo();
+            c++;
+        }
+        if(temp->datoNodo() == dato){
+            cout<< temp->datoNodo();
+            cout << "\nEl elemento "<< dato<< " esta en la posición: "<<c<< "\n";
+        }
+        else{
+            cout<<"\nLo sentimos, el elemento no se encuentra en la lista\n";
+        }
+    }
+}
+
+/**
+ * @brief Funcion que se encarga de editar un elmento en cierta posicion
+ * @param posicion Posicion que se desea editar
+ * @param dato Elemento por el cual se desea cambiar
+ * */
+
+void ListaEnlazadaSimple::editarPosicion(int dato, int posicion) {
+    Nodo* temp = cabeza;
+    int c = 0;
+
+    if(esVacia()){
+        cout<< "Error, no hay elementos en la lista.\n";
+    }else if(posicion > cantNodos-1){
+        cout<< "No existe elemento en esa posicion\n";
+    }
+    else{
+        while ((temp->enlaceNodo() != NULL) && (c != posicion-1)){
+            temp = temp->enlaceNodo();
+            c++;
+        }
+        temp->dato = dato;
+
     }
 }
 
 /**
  * @brief Verifica que la lista se encuentre vacía
  * */
-bool Lista::esVacia()  {
+bool ListaEnlazadaSimple::esVacia()  {
     return cabeza == NULL; //Verifica que la lista este vacía
 }
+
 /**
  * @brief Funcion que se encarga de recorrer la lista e imprimir
  * cada nodo
  *
  * */
 
-void Lista::imprimir() {
+void ListaEnlazadaSimple::imprimir() {
 
     Nodo* n = cabeza;      //Crea un puntero y lo posiciona en la cabeza de la lista
 
@@ -188,7 +237,7 @@ void Lista::imprimir() {
     cout << "\nCantidad de nodos en la lista: "<< cantNodos<<endl;
 }
 
-void Lista::instrucciones() {
+void ListaEnlazadaSimple::instrucciones() {
 
     cout << "Escriba una de las siguientes opciones: \n"
          << " 1 para insertar al inicio de la lista\n"

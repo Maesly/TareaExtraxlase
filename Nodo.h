@@ -35,6 +35,7 @@ public:
     void siguiente(Nodo* sgte){
         enlace = sgte;
     }
+    friend class ListaEnlazadaSimple;
 
 };
 

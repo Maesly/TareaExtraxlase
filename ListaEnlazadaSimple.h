@@ -11,32 +11,37 @@ typedef int Dato;
 #include "Nodo.h"
 #include <iostream>
 
-class Lista{
+class ListaEnlazadaSimple{
 protected:
     Nodo* cabeza;
-    Nodo* cola;
+
 
 public:
     //Constructor de la clase Lista
-    Lista(){
+    ListaEnlazadaSimple(){
         cabeza = NULL;
-
-        cola = NULL;
     }
     int cantNodos = 0;
 
+    //Insertar Nodos
     void insertarPrimero(Dato valor);
     void insertarFinal(Dato valor);
     void insertar(Dato valor, int posicion);
+
+    //Eliminar Nodos
     void eliminarInicio();
     void eliminarFinal();
     void eliminarPosicion(int posicion);
+
+    // Buscar nodo
+    void obtenerPosicion(int dato);
+
+    void editarPosicion(int dato,int posicion);
+
     void imprimir();
     bool esVacia();
     void instrucciones();
-    void probarLista();
-    void menu();
 
-    Nodo* ultimo();
+
 };
 #endif //TAREAEXTRAXLASE_LISTA_H
