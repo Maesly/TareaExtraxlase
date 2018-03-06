@@ -3,5 +3,5 @@ project(TareaExtraxlase)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp "Nodo.h" ListaEnlazadaSimple.h ListaEnlazadaSimple.cpp ListaEnlazadaDoble.cpp ListaEnlazadaDoble.h NodoDoble.h)
+set(SOURCE_FILES main.cpp "ListaEnlazadaSimple/Nodo.h" ListaEnlazadaSimple/ListaEnlazadaSimple.cpp ListaEnlazadaDoble/ListaEnlazadaDoble.cpp ListaEnlazadaDoble/ListaEnlazadaDoble.h ListaEnlazadaDoble/NodoDoble.h ListaCircular/NodoCircular.h ListaCircular/ListaCircular.h ListaCircular/ListaCircular.cpp ListaEnlazadaSimple/ListaEnlazadaSimple.h)
 add_executable(TareaExtraxlase ${SOURCE_FILES})

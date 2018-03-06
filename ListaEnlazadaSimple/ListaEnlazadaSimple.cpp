@@ -6,6 +6,14 @@
 using namespace std;
 #include <iostream>
 
+
+/**
+ * @brief Verifica que la lista se encuentre vacía
+ * */
+bool ListaEnlazadaSimple::esVacia()  {
+    return cabeza == NULL; //Verifica que la lista este vacía
+}
+
 /**
  *@brief Crea un nuevo nodo con el dato que se desea insertar
  * y lo añade de primero en la lista
@@ -174,7 +182,7 @@ void ListaEnlazadaSimple::obtenerPosicion(int dato) {
             c++;
         }
         if(temp->datoNodo() == dato){
-            cout<< temp->datoNodo();
+            //cout<< temp->datoNodo();
             cout << "\nEl elemento "<< dato<< " esta en la posición: "<<c<< "\n";
         }
         else{
@@ -195,25 +203,23 @@ void ListaEnlazadaSimple::editarPosicion(int dato, int posicion) {
 
     if(esVacia()){
         cout<< "Error, no hay elementos en la lista.\n";
+
     }else if(posicion > cantNodos-1){
         cout<< "No existe elemento en esa posicion\n";
     }
     else{
+
         while ((temp->enlaceNodo() != NULL) && (c != posicion-1)){
             temp = temp->enlaceNodo();
             c++;
         }
         temp->dato = dato;
+        cout << "El nodo en la posicion: "<<posicion<<", se cambio por: " << dato<< " con exito\n";
 
     }
 }
 
-/**
- * @brief Verifica que la lista se encuentre vacía
- * */
-bool ListaEnlazadaSimple::esVacia()  {
-    return cabeza == NULL; //Verifica que la lista este vacía
-}
+
 
 /**
  * @brief Funcion que se encarga de recorrer la lista e imprimir

@@ -1,39 +1,33 @@
 #include <iostream>
-#include "ListaEnlazadaSimple.h"
-#include "ListaEnlazadaDoble.h"
-
+#include "ListaEnlazadaSimple/ListaEnlazadaSimple.h"
+#include "ListaEnlazadaDoble/ListaEnlazadaDoble.h"
+#include "ListaCircular/ListaCircular.h"
 using namespace std;
 int main() {
     cout << "Hello, World!" << endl;
 
     //Dato d;
-    ListaEnlazadaDoble lista;
+    //ListaEnlazadaDoble lista;
+    //ListaEnlazadaSimple lista2;
+    ListaCircular lista3;
     cout<< "Elementos de la lista: " <<endl;
 
-    lista.insertarAlInicio(1);
-    lista.insertarAlInicio(2);
-    lista.insertarAlInicio(3);
-    lista.insertarAlInicio(4);
-    lista.insertarAlInicio(5);
-    lista.insertarAlFinal(96);
-    lista.insertar(78,3);
-    lista.imprimirLista();
 
-
-
-   /* lista.insertarPrimero(1);
-    lista.insertarPrimero(2);
-    lista.insertarPrimero(3);
-    lista.insertarPrimero(4);
-    lista.insertarPrimero(5);
-    lista.insertarPrimero(6);
-    //lista.editarPosicion(69,8);
-    lista.buscar(1);
-   // lista.eliminarPosicion(5);
-    lista.imprimir();
-*/
-
-
+    lista3.insertarAlfinal(1);
+    lista3.insertarAlfinal(2);
+    lista3.insertarAlfinal(3);
+    lista3.insertarAlfinal(4);
+    lista3.insertarAlfinal(5);
+    lista3.editarPosicion(6,5);
+    //lista3.buscar(3);
+    //lista3.eliminar(1);
+    //lista3.insertarAlinicio(2);
+    //lista3.insertarAlinicio(1);
+    //lista3.insertarAlfinal(6);
+    //lista3.insertar(8,0);
+    //lista3.eliminarAlinicio();
+    //lista3.eliminarAlfinal();
+    lista3.imprimirLista();
 
     return 0;
 }
