@@ -13,6 +13,7 @@ protected:
     Dato dato;
     Nodo* enlace;
 public:
+
     Nodo(Dato t){
         dato = t;
         enlace = NULL;
